@@ -1,7 +1,3 @@
-Certainly, HK Roni Sir. Below is a detailed material outline for **Session 1** of the Flutter Mobile App Development course:
-
----
-
 ## Session 1: Introduction to Flutter and Dart
 
 ### Duration
