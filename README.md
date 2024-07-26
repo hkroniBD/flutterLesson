@@ -1,7 +1,6 @@
 # Flutter Mobile App Development Course
 
-Author
-Md. Hassanul Karim Roni  
+Author: Md. Hassanul Karim Roni  
 Faculty Member, Dept. of EEE, Hajee Mohammad Danesh Science and Technology University (HSTU)  
 Dinajpur, Bangladesh
 
