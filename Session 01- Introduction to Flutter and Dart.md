@@ -250,10 +250,10 @@ Certainly, HK Roni Sir. Below is a detailed material outline for **Session 1** o
 ### **5. Q&A and Wrap-Up (30 minutes)**
 
 #### **5.1 Addressing Questions**
-- Open floor for students to ask questions about Flutter and Dart.
+- Now it open floor for students to ask questions about Flutter and Dart.
 
 #### **5.2 Recap of the Day**
-- Summary of key points covered in the session.
+- Let's summarize key points covered in the session.
 
 #### **5.3 Homework Assignment**
 - **Modify the Example App**:
@@ -261,7 +261,3 @@ Certainly, HK Roni Sir. Below is a detailed material outline for **Session 1** o
   - Add a new widget (e.g., a text field or an image) and adjust its properties.
 - **Reference**:
   - [Flutter Widgets Catalog] (https://flutter.dev/docs/development/ui/widgets)
-
----
-
-This detailed material provides a comprehensive guide for Session 1, ensuring students understand both Flutter and Dart fundamentals while also engaging in hands-on practice.
