@@ -43,6 +43,13 @@ dependencies:
   hive_flutter: ^1.1.0
 ```
 
+Add permission to ...\android\app\src\main\AndroidManifest.xml
+```dart
+<uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+```
+
 #### 2. Install Dependencies
 
 Run the following command to install the new dependencies:
@@ -75,6 +82,16 @@ class MyApp extends StatelessWidget {
       home: MyHomePage(),
     );
   }
+}
+```
+
+Alternative way to initialize Hive with defined path
+```dart
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final directory = await getApplicationDocumentsDirectory();
+  Hive.init(directory.path);
+  runApp(MyApp());
 }
 ```
 
