@@ -1,7 +1,7 @@
 ### **Tutorial on ISAR Database with Flutter**
 
 **Overview:**
-ISAR (Intuitive, Swift, and ARm) is a highly efficient NoSQL database for Flutter. It provides high performance and easy-to-use APIs, making it an excellent choice for local data storage in Flutter applications. This tutorial will guide you through setting up ISAR in your Flutter project, and using it to perform CRUD (Create, Read, Update, Delete) operations.
+ISAR (Intuitive, Swift, and ARm) is a highly efficient NoSQL database for Flutter. It provides high performance and easy-to-use APIs, making it an excellent choice for local data storage in Flutter applications. 
 
 ### **1. Setting Up ISAR in Flutter**
 
