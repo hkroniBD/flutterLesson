@@ -1,268 +1,285 @@
 ### **Session 14: Introduction to Networking**
 
 #### **Objective:**
-This session will introduce the fundamentals of networking in Flutter, focusing on making HTTP requests, parsing JSON data, displaying the data in the UI, and handling potential errors or network exceptions. By the end of this session, students should be able to fetch and display data from a remote server in a Flutter app.
+This session focuses on networking in Flutter, including making HTTP requests, parsing JSON data, displaying fetched data in the UI, and handling errors and network exceptions.
 
 ---
 
 ### **1. Making HTTP Requests with the `http` Package**
 
-**a. Introduction to the `http` Package:**
-   - The `http` package in Flutter is a powerful tool that simplifies making HTTP requests. It supports GET, POST, PUT, DELETE, and other HTTP methods.
+**a. Overview**
 
-**b. Installing the `http` Package:**
-   - Add the following dependency in your `pubspec.yaml` file:
-     ```yaml
-     dependencies:
-       http: ^0.13.4
-     ```
-   - Run `flutter pub get` to install the package.
+- The `http` package provides a simple way to make network requests and handle responses in Flutter.
 
-**c. Making a Simple GET Request:**
-   - **Example: Fetching Data from a Public API**
-     ```dart
-     import 'package:flutter/material.dart';
-     import 'package:http/http.dart' as http;
-     import 'dart:convert';
+**b. Setup**
 
-     class NetworkingExample extends StatefulWidget {
-       @override
-       _NetworkingExampleState createState() => _NetworkingExampleState();
-     }
+- Add the `http` package to your `pubspec.yaml` file:
 
-     class _NetworkingExampleState extends State<NetworkingExample> {
-       String _data = '';
+  ```yaml
+  dependencies:
+    flutter:
+      sdk: flutter
+    http: ^0.14.0
+  ```
 
-       Future<void> fetchData() async {
-         final response = await http.get(Uri.parse('https://jsonplaceholder.typicode.com/posts/1'));
+- Install the package:
 
-         if (response.statusCode == 200) {
-           setState(() {
-             _data = jsonDecode(response.body)['title'];
-           });
-         } else {
-           throw Exception('Failed to load data');
-         }
-       }
+  ```bash
+  flutter pub get
+  ```
 
-       @override
-       void initState() {
-         super.initState();
-         fetchData();
-       }
+**c. Making a GET Request**
 
-       @override
-       Widget build(BuildContext context) {
-         return Scaffold(
-           appBar: AppBar(
-             title: Text('Networking Example'),
-           ),
-           body: Center(
-             child: _data.isEmpty ? CircularProgressIndicator() : Text(_data),
-           ),
-         );
-       }
-     }
-     ```
-   - **Explanation:**
-     - The `http.get()` method is used to fetch data from the API.
-     - `jsonDecode()` is used to parse the JSON response.
-     - The response is displayed in a `Text` widget.
+- **Example:**
+
+  ```dart
+  import 'package:flutter/material.dart';
+  import 'package:http/http.dart' as http;
+  import 'dart:convert';
+
+  void main() => runApp(MyApp());
+
+  class MyApp extends StatelessWidget {
+    @override
+    Widget build(BuildContext context) {
+      return MaterialApp(
+        home: Scaffold(
+          appBar: AppBar(title: Text('Networking Example')),
+          body: DataFetcher(),
+        ),
+      );
+    }
+  }
+
+  class DataFetcher extends StatefulWidget {
+    @override
+    _DataFetcherState createState() => _DataFetcherState();
+  }
+
+  class _DataFetcherState extends State<DataFetcher> {
+    late Future<List<String>> data;
+
+    @override
+    void initState() {
+      super.initState();
+      data = fetchData();
+    }
+
+    Future<List<String>> fetchData() async {
+      final response = await http.get(Uri.parse('https://jsonplaceholder.typicode.com/posts'));
+
+      if (response.statusCode == 200) {
+        List<dynamic> jsonResponse = json.decode(response.body);
+        return jsonResponse.map((post) => post['title'] as String).toList();
+      } else {
+        throw Exception('Failed to load data');
+      }
+    }
+
+    @override
+    Widget build(BuildContext context) {
+      return FutureBuilder<List<String>>(
+        future: data,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return Center(child: Text('Error: ${snapshot.error}'));
+          } else if (snapshot.hasData) {
+            return ListView(
+              children: snapshot.data!.map((title) => ListTile(title: Text(title))).toList(),
+            );
+          } else {
+            return Center(child: Text('No data found'));
+          }
+        },
+      );
+    }
+  }
+  ```
+
+- **References:**
+  - [http package documentation](https://pub.dev/packages/http)
 
 ---
 
 ### **2. Parsing JSON Data**
 
-**a. Understanding JSON Structure:**
-   - JSON (JavaScript Object Notation) is a lightweight data-interchange format that is easy to read and write for humans and machines. In Flutter, JSON data is usually represented as a map.
+**a. Overview**
 
-**b. Parsing JSON in Flutter:**
-   - **Example: Converting JSON String to Dart Objects**
-     ```dart
-     String jsonString = '{"id": 1, "title": "Hello, Flutter!"}';
-     Map<String, dynamic> userMap = jsonDecode(jsonString);
-     print('Title: ${userMap['title']}');
-     ```
+- JSON data is parsed using the `dart:convert` package, which provides the `json.decode()` method.
 
-**c. Working with Complex JSON Structures:**
-   - **Example: Parsing Nested JSON**
-     ```dart
-     String jsonString = '''
-     {
-       "user": {
-         "id": 1,
-         "name": "John Doe",
-         "email": "johndoe@example.com"
-       }
-     }
-     ''';
+**b. Example**
 
-     Map<String, dynamic> userMap = jsonDecode(jsonString);
-     print('User Name: ${userMap['user']['name']}');
-     ```
+- **JSON Parsing:**
 
-**d. Model Class for JSON Parsing:**
-   - **Example: Creating a Dart Model for API Data**
-     ```dart
-     class Post {
-       final int id;
-       final String title;
+  ```dart
+  import 'dart:convert';
 
-       Post({required this.id, required this.title});
+  String jsonResponse = '''
+  [
+    {"title": "Post 1"},
+    {"title": "Post 2"}
+  ]
+  ''';
 
-       factory Post.fromJson(Map<String, dynamic> json) {
-         return Post(
-           id: json['id'],
-           title: json['title'],
-         );
-       }
-     }
+  List<dynamic> parsedJson = json.decode(jsonResponse);
+  List<String> titles = parsedJson.map((post) => post['title'] as String).toList();
+  ```
 
-     Future<Post> fetchPost() async {
-       final response = await http.get(Uri.parse('https://jsonplaceholder.typicode.com/posts/1'));
-
-       if (response.statusCode == 200) {
-         return Post.fromJson(jsonDecode(response.body));
-       } else {
-         throw Exception('Failed to load post');
-       }
-     }
-     ```
+- **References:**
+  - [Dart JSON Documentation](https://dart.dev/guides/json)
 
 ---
 
 ### **3. Displaying Fetched Data in the UI**
 
-**a. Using `FutureBuilder` to Handle Asynchronous Data:**
-   - **Example: Displaying Data from an API**
-     ```dart
-     @override
-     Widget build(BuildContext context) {
-       return Scaffold(
-         appBar: AppBar(
-           title: Text('Display Data'),
-         ),
-         body: FutureBuilder<Post>(
-           future: fetchPost(),
-           builder: (context, snapshot) {
-             if (snapshot.connectionState == ConnectionState.waiting) {
-               return Center(child: CircularProgressIndicator());
-             } else if (snapshot.hasError) {
-               return Center(child: Text('Error: ${snapshot.error}'));
-             } else if (snapshot.hasData) {
-               return Center(child: Text('Title: ${snapshot.data!.title}'));
-             } else {
-               return Center(child: Text('No data available'));
-             }
-           },
-         ),
-       );
-     }
-     ```
+**a. Overview**
 
-**b. Customizing the UI Based on the Data:**
-   - You can style the UI, display images, or show additional data based on the fetched data.
+- Displaying data fetched from the network typically involves using widgets like `ListView` or `GridView` in combination with `FutureBuilder`.
+
+**b. Example**
+
+- **Using `FutureBuilder`:**
+
+  ```dart
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<List<String>>(
+      future: data,
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Center(child: CircularProgressIndicator());
+        } else if (snapshot.hasError) {
+          return Center(child: Text('Error: ${snapshot.error}'));
+        } else if (snapshot.hasData) {
+          return ListView(
+            children: snapshot.data!.map((title) => ListTile(title: Text(title))).toList(),
+          );
+        } else {
+          return Center(child: Text('No data found'));
+        }
+      },
+    );
+  }
+  ```
+
+- **References:**
+  - [Flutter ListView Documentation](https://flutter.dev/docs/development/ui/widgets/scrolling#listview)
+  - [Flutter FutureBuilder Documentation](https://flutter.dev/docs/development/data-and-backend/futures)
 
 ---
 
 ### **4. Handling Errors and Network Exceptions**
 
-**a. Common Error Scenarios:**
-   - **Network Unavailability:** No internet connection.
-   - **Server Errors:** 404 Not Found, 500 Internal Server Error.
-   - **Parsing Errors:** Incorrect or unexpected JSON format.
+**a. Overview**
 
-**b. Implementing Error Handling:**
-   - **Example: Handling Network Errors**
-     ```dart
-     Future<void> fetchData() async {
-       try {
-         final response = await http.get(Uri.parse('https://jsonplaceholder.typicode.com/posts/1'));
+- Proper error handling ensures that users receive meaningful feedback when network requests fail or data is invalid.
 
-         if (response.statusCode == 200) {
-           // Parse the JSON
-         } else {
-           throw Exception('Failed to load data');
-         }
-       } on SocketException {
-         // Handle network error
-         print('No Internet connection');
-       } catch (e) {
-         // Handle other exceptions
-         print('Error: $e');
-       }
-     }
-     ```
+**b. Example**
 
-**c. Displaying Error Messages in the UI:**
-   - Inform the user of any errors using dialogs, snack bars, or error messages in the UI.
+- **Error Handling in HTTP Requests:**
+
+  ```dart
+  Future<List<String>> fetchData() async {
+    try {
+      final response = await http.get(Uri.parse('https://jsonplaceholder.typicode.com/posts'));
+
+      if (response.statusCode == 200) {
+        List<dynamic> jsonResponse = json.decode(response.body);
+        return jsonResponse.map((post) => post['title'] as String).toList();
+      } else {
+        throw Exception('Failed to load data');
+      }
+    } catch (e) {
+      throw Exception('Failed to fetch data: $e');
+    }
+  }
+  ```
+
+- **Displaying Errors:**
+
+  ```dart
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<List<String>>(
+      future: data,
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Center(child: CircularProgressIndicator());
+        } else if (snapshot.hasError) {
+          return Center(child: Text('Error: ${snapshot.error}'));
+        } else if (snapshot.hasData) {
+          return ListView(
+            children: snapshot.data!.map((title) => ListTile(title: Text(title))).toList(),
+          );
+        } else {
+          return Center(child: Text('No data found'));
+        }
+      },
+    );
+  }
+  ```
+
+- **References:**
+  - [Error Handling in Flutter](https://flutter.dev/docs/cookbook/networking/fetch-data)
 
 ---
 
 ### **Assignments**
 
-#### **Assignment 1: Fetch and Display User Data**
-- **Objective:** Create an app that fetches user data from an API and displays the user’s name, email, and other details on the screen.
-- **Tasks:**
-  1. Fetch data from the `https://jsonplaceholder.typicode.com/users` endpoint.
-  2. Parse the JSON data to extract user information.
-  3. Display the user details in a styled UI.
+#### **Assignment 1: Fetch and Display Data**
 
-#### **Assignment 2: Post Request and Error Handling**
-- **Objective:** Develop a form that sends data to an API via a POST request. Handle errors like network unavailability and server errors.
+- **Objective:** Create a Flutter app that fetches data from a public API and displays it in a `ListView`.
 - **Tasks:**
-  1. Create a form with fields for title and body.
-  2. Send the form data as a POST request to the `https://jsonplaceholder.typicode.com/posts` endpoint.
-  3. Display the response or an error message based on the outcome.
+  1. Use the `http` package to make a GET request to a public API (e.g., JSONPlaceholder).
+  2. Parse the JSON response and display it in a `ListView`.
+  3. Handle network errors and display appropriate error messages.
 
-#### **Assignment 3: Parsing Complex JSON**
-- **Objective:** Work with a complex JSON structure that includes nested objects and arrays. Parse the JSON and display it in a structured way.
-- **Tasks:**
-  1. Fetch data from a nested JSON endpoint.
-  2. Parse and display the nested objects and arrays in a structured UI.
+#### **Assignment 2: Handle API Errors**
 
-#### **Assignment 4: Implementing Offline Support**
-- **Objective:** Create an app that can fetch and display data even when offline by storing the data locally using a package like `shared_preferences`.
+- **Objective:** Enhance the previous assignment to handle different types of errors and provide user feedback.
 - **Tasks:**
-  1. Fetch data from an API and store it locally.
-  2. Implement logic to display the locally stored data when the app is offline.
+  1. Modify the app to handle HTTP errors and exceptions.
+  2. Display error messages in the UI using appropriate widgets.
+  3. Implement a retry mechanism for failed network requests.
 
 ---
 
-### **Quick MCQ Quizzes**
+### **Quiz**
 
-1. **Which package is commonly used for making HTTP requests in Flutter?**
-   - a) flutter_http
-   - b) http_request
-   - c) http
-   - d) network
+1. **Which method is used to decode JSON data in Dart?**
+   - a) `json.decode()`
+   - b) `json.encode()`
+   - c) `json.parse()`
+   - d) `json.load()`
 
-2. **What is the correct way to parse a JSON string in Dart?**
-   - a) `json.parse(jsonString)`
-   - b) `JSON.parse(jsonString)`
-   - c) `jsonDecode(jsonString)`
-   - d) `parseJson(jsonString)`
+2. **What is the purpose of `FutureBuilder` in Flutter?**
+   - a) To build UI elements based on future data
+   - b) To handle form validation
+   - c) To manage state
+   - d) To perform synchronous operations
 
-3. **Which widget is best suited for displaying data fetched from an API asynchronously?**
-   - a) `StreamBuilder`
-   - b) `FutureBuilder`
-   - c) `Builder`
-   - d) `Scaffold`
+3. **How do you handle HTTP errors in Flutter?**
+   - a) By catching exceptions and displaying error messages
+   - b) By using `http.get()` with error handling
+   - c) By using the `Future` class
+   - d) By ignoring errors
 
-4. **What error might you encounter if there is no internet connection while making an HTTP request?**
-   - a) `SocketException`
-   - b) `NoSuchMethodError`
-   - c) `NullPointerException`
-   - d) `TypeError`
+4. **What is a common use case for the `ListView` widget in Flutter?**
+   - a) Displaying a scrollable list of items
+   - b) Showing a single item
+   - c) Implementing animations
+   - d) Handling form submissions
 
-5. **Which method is used to send a POST request using the `http` package?**
-   - a) `http.send()`
-   - b) `http.request()`
-   - c) `http.post()`
-   - d) `http.push()`
+5. **What should you do if a network request fails?**
+   - a) Display a generic error message to the user
+   - b) Retry the request automatically
+   - c) Show an appropriate error message and provide retry options
+   - d) Ignore the error and continue
 
 ---
 
 ### **Conclusion**
 
-This session provides a comprehensive introduction to networking in Flutter, equipping students with the skills to make HTTP requests, parse JSON data, handle errors, and display network data in their apps. The assignments and quizzes reinforce the concepts and give students practical experience with real-world scenarios.
+Session 14 introduces essential networking concepts in Flutter, including making HTTP requests, parsing JSON data, and handling errors. Mastery of these concepts allows developers to build apps that can interact with remote services, display dynamic data, and handle network-related issues gracefully.
