@@ -1,153 +1,96 @@
-### **Lecture Notes: Session 7 - Widgets Deep Dive**
+### **Session 7: Widgets Deep Dive**
+
+#### **Objective:**
+This session provides an in-depth exploration of common Flutter widgets, focusing on buttons, icons, and text fields. It also covers handling user input and forms and customizing widgets through styling, theming, and decoration.
 
 ---
 
-#### **1. Detailed Exploration of Common Widgets**
+### **1. Detailed Exploration of Common Widgets**
 
 **a. Buttons:**
 
-- **Definition:** Buttons are interactive widgets that trigger an action when pressed. They come in various types and styles in Flutter.
-
 - **Types of Buttons:**
-  - **ElevatedButton:** A material design button with a shadow, often used for primary actions.
-  - **TextButton:** A button without elevation, typically used for secondary actions.
-  - **OutlinedButton:** A button with a border, used for actions that are less prominent.
+  - **ElevatedButton:** A button with a shadow that appears elevated above the surrounding content.
+  - **TextButton:** A button with no elevation or border, typically used for simple text interactions.
+  - **OutlinedButton:** A button with an outline but no background color, suitable for secondary actions.
 
-- **Examples:**
-  - **ElevatedButton:**
-    ```dart
-    ElevatedButton(
-      onPressed: () {
-        // Handle button press
-      },
-      child: Text('Elevated Button'),
-    )
-    ```
+- **Syntax Examples:**
+  ```dart
+  ElevatedButton(
+    onPressed: () {
+      // Handle button press
+    },
+    child: Text('Elevated Button'),
+  )
 
-  - **TextButton:**
-    ```dart
-    TextButton(
-      onPressed: () {
-        // Handle button press
-      },
-      child: Text('Text Button'),
-    )
-    ```
+  TextButton(
+    onPressed: () {
+      // Handle button press
+    },
+    child: Text('Text Button'),
+  )
 
-  - **OutlinedButton:**
-    ```dart
-    OutlinedButton(
-      onPressed: () {
-        // Handle button press
-      },
-      child: Text('Outlined Button'),
-    )
-    ```
+  OutlinedButton(
+    onPressed: () {
+      // Handle button press
+    },
+    child: Text('Outlined Button'),
+  )
+  ```
+
+- **References:**
+  - [ElevatedButton Documentation](https://flutter.dev/docs/development/ui/widgets/material#elevatedbutton)
+  - [TextButton Documentation](https://flutter.dev/docs/development/ui/widgets/material#textbutton)
+  - [OutlinedButton Documentation](https://flutter.dev/docs/development/ui/widgets/material#outlinedbutton)
 
 **b. Icons:**
 
-- **Definition:** Icons are visual representations used to convey meaning through imagery. They are used to enhance the UI and provide visual cues.
+- **Definition:**
+  - `Icon` widgets are used to display icons from the Material Icons font.
 
-- **Key Properties:**
-  - **icon:** The icon to display.
-  - **color:** The color of the icon.
-  - **size:** The size of the icon.
+- **Syntax Example:**
+  ```dart
+  Icon(
+    Icons.star,
+    color: Colors.yellow,
+    size: 50.0,
+  )
+  ```
 
-- **Examples:**
-  - **Using Icons:**
-    ```dart
-    Icon(
-      Icons.home,
-      color: Colors.blue,
-      size: 30.0,
-    )
-    ```
-
-  - **Icons in Buttons:**
-    ```dart
-    ElevatedButton.icon(
-      onPressed: () {
-        // Handle button press
-      },
-      icon: Icon(Icons.add),
-      label: Text('Add Item'),
-    )
-    ```
+- **References:**
+  - [Icon Documentation](https://flutter.dev/docs/development/ui/widgets/material#icon)
 
 **c. TextFields:**
 
-- **Definition:** `TextField` is a widget used for user input, allowing the user to enter text.
+- **Definition:**
+  - `TextField` widgets are used for user input in text form.
 
-- **Key Properties:**
-  - **controller:** Controls the text being edited.
-  - **decoration:** Defines the appearance, including labels, hints, and borders.
-  - **obscureText:** Obscures the text (useful for passwords).
+- **Syntax Example:**
+  ```dart
+  TextField(
+    decoration: InputDecoration(
+      labelText: 'Enter your text',
+      border: OutlineInputBorder(),
+    ),
+    onChanged: (text) {
+      // Handle text input
+    },
+  )
+  ```
 
-- **Examples:**
-  - **Basic TextField:**
-    ```dart
-    TextField(
-      decoration: InputDecoration(
-        labelText: 'Enter your name',
-      ),
-    )
-    ```
-
-  - **TextField with Controller:**
-    ```dart
-    final TextEditingController _controller = TextEditingController();
-
-    TextField(
-      controller: _controller,
-      decoration: InputDecoration(
-        labelText: 'Enter your email',
-      ),
-    )
-    ```
+- **References:**
+  - [TextField Documentation](https://flutter.dev/docs/development/ui/widgets/material#textfield)
 
 ---
 
-#### **2. Handling User Input and Forms**
+### **2. Handling User Input and Forms**
 
-**a. Handling User Input:**
+**a. Creating Forms:**
 
-- **TextEditingController:**
-  - **Purpose:** Manages the text input and allows for reading and updating the text.
-  - **Example:**
-    ```dart
-    final TextEditingController _controller = TextEditingController();
+- **Definition:**
+  - Forms in Flutter allow users to enter and submit data. The `Form` widget helps manage form state and validation.
 
-    TextField(
-      controller: _controller,
-      decoration: InputDecoration(
-        labelText: 'Enter your text',
-      ),
-    )
-    ```
-
-- **FocusNode:**
-  - **Purpose:** Manages the focus of a text field, allowing you to handle focus changes.
-  - **Example:**
-    ```dart
-    final FocusNode _focusNode = FocusNode();
-
-    TextField(
-      focusNode: _focusNode,
-      decoration: InputDecoration(
-        labelText: 'Focused TextField',
-      ),
-    )
-    ```
-
-**b. Forms:**
-
-- **Definition:** Forms are used to collect user input and validate it. The `Form` widget groups `TextFormField` widgets and provides validation functionality.
-
-- **Key Properties:**
-  - **key:** A unique key for the form.
-  - **onSaved:** A callback function to save the form's state.
-
-- **Example:**
+- **Syntax Example:**
   ```dart
   final _formKey = GlobalKey<FormState>();
 
@@ -156,26 +99,27 @@
     child: Column(
       children: <Widget>[
         TextFormField(
-          decoration: InputDecoration(labelText: 'Name'),
+          decoration: InputDecoration(labelText: 'Username'),
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return 'Please enter your name';
+              return 'Please enter your username';
             }
             return null;
           },
         ),
         TextFormField(
-          decoration: InputDecoration(labelText: 'Email'),
+          decoration: InputDecoration(labelText: 'Password'),
+          obscureText: true,
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return 'Please enter your email';
+              return 'Please enter your password';
             }
             return null;
           },
         ),
         ElevatedButton(
           onPressed: () {
-            if (_formKey.currentState?.validate() ?? false) {
+            if (_formKey.currentState!.validate()) {
               // Process data
             }
           },
@@ -186,116 +130,165 @@
   )
   ```
 
-**c. Validating Forms:**
+- **References:**
+  - [Form Documentation](https://flutter.dev/docs/development/ui/widgets/forms)
+  - [TextFormField Documentation](https://flutter.dev/docs/development/ui/widgets/forms#textformfield)
 
-- **Validation Function:** Use `validator` to check the validity of user input.
-- **Saving Form State:** Use `onSaved` to handle the form submission and save data.
+**b. Handling Form Validation:**
+
+- **Definition:**
+  - Form validation ensures that user input meets certain criteria before submission.
+
+- **Syntax Example:**
+  ```dart
+  TextFormField(
+    decoration: InputDecoration(labelText: 'Email'),
+    validator: (value) {
+      if (value == null || !RegExp(r'^[^@]+@[^@]+\.[^@]+').hasMatch(value)) {
+        return 'Please enter a valid email address';
+      }
+      return null;
+    },
+  )
+  ```
+
+- **References:**
+  - [Form Validation Documentation](https://flutter.dev/docs/development/ui/widgets/forms#validating-input)
 
 ---
 
-#### **3. Customizing Widgets (Styling, Theming, and Decoration)**
+### **3. Customizing Widgets (Styling, Theming, and Decoration)**
 
 **a. Styling Widgets:**
 
 - **Text Styling:**
-  - **Example:**
-    ```dart
-    Text(
-      'Styled Text',
-      style: TextStyle(
-        color: Colors.red,
-        fontSize: 20,
-        fontWeight: FontWeight.bold,
-      ),
-    )
-    ```
+  - Use the `TextStyle` class to apply styling to text.
 
-- **Button Styling:**
-  - **Example:**
-    ```dart
-    ElevatedButton(
-      onPressed: () {},
-      style: ElevatedButton.styleFrom(
-        primary: Colors.purple,
-        onPrimary: Colors.white,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
-        ),
-      ),
-      child: Text('Styled Button'),
-    )
-    ```
+- **Syntax Example:**
+  ```dart
+  Text(
+    'Styled Text',
+    style: TextStyle(
+      fontSize: 24.0,
+      fontWeight: FontWeight.bold,
+      color: Colors.blue,
+    ),
+  )
+  ```
 
-**b. Theming Widgets:**
+- **References:**
+  - [TextStyle Documentation](https://flutter.dev/docs/development/ui/widgets/text#textstyle)
 
-- **Definition:** Theming allows you to define consistent styling across your application using a theme. You can customize colors, fonts, and shapes.
+**b. Theming:**
 
-- **Example:**
+- **Definition:**
+  - Theming allows you to apply consistent styling across your app using the `ThemeData` class.
+
+- **Syntax Example:**
   ```dart
   ThemeData(
-    primarySwatch: Colors.teal,
-    accentColor: Colors.orange,
+    primarySwatch: Colors.blue,
     textTheme: TextTheme(
-      bodyText1: TextStyle(fontSize: 18.0, fontFamily: 'Hind'),
+      headline1: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
+      bodyText1: TextStyle(fontSize: 14.0),
     ),
   )
   ```
 
-- **Applying Theme:**
-  ```dart
-  MaterialApp(
-    theme: ThemeData(
-      primarySwatch: Colors.blue,
-    ),
-    home: MyHomePage(),
-  )
-  ```
+- **References:**
+  - [Theming Documentation](https://flutter.dev/docs/development/ui/widgets/material#themes)
 
 **c. Decoration:**
 
-- **Container Decoration:**
-  - **Example:**
-    ```dart
-    Container(
-      decoration: BoxDecoration(
-        color: Colors.green,
-        borderRadius: BorderRadius.circular(15),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.3),
-            spreadRadius: 5,
-            blurRadius: 7,
-            offset: Offset(0, 3),
-          ),
-        ],
-      ),
-      child: Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Text('Decorated Container'),
-      ),
-    )
-    ```
+- **Definition:**
+  - Use the `BoxDecoration` class to decorate containers with background color, border, and shadows.
 
-- **InputDecoration for TextField:**
-  - **Example:**
-    ```dart
-    TextField(
-      decoration: InputDecoration(
-        labelText: 'Enter text',
-        border: OutlineInputBorder(),
-        prefixIcon: Icon(Icons.text_fields),
-      ),
-    )
-    ```
+- **Syntax Example:**
+  ```dart
+  Container(
+    decoration: BoxDecoration(
+      color: Colors.green,
+      borderRadius: BorderRadius.circular(10.0),
+      boxShadow: [
+        BoxShadow(
+          color: Colors.black26,
+          blurRadius: 5.0,
+          offset: Offset(0, 2),
+        ),
+      ],
+    ),
+    child: Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Text('Decorated Container'),
+    ),
+  )
+  ```
 
-**d. Best Practices:**
+- **References:**
+  - [BoxDecoration Documentation](https://flutter.dev/docs/development/ui/widgets/container#decoration)
 
-- **Consistent Styling:** Use themes to maintain consistent styling across your application.
-- **Performance:** Avoid excessive use of decorations that may impact performance.
-- **Responsiveness:** Ensure widgets adapt to different screen sizes and orientations.
+---
+
+### **Assignments**
+
+#### **Assignment 1: Button and Icon Implementation**
+
+- **Objective:** Practice using different button types and icons.
+- **Tasks:**
+  1. Create a UI with `ElevatedButton`, `TextButton`, and `OutlinedButton`. Apply different styles to each button.
+  2. Add icons to a list of `ListTile` widgets and style them appropriately.
+
+#### **Assignment 2: Form Creation and Validation**
+
+- **Objective:** Build a form with validation and handle user input.
+- **Tasks:**
+  1. Create a form with fields for email, password, and phone number. Add validation rules for each field.
+  2. Implement a submit button that processes the form data when valid.
+
+#### **Assignment 3: Customizing Widgets**
+
+- **Objective:** Apply styling, theming, and decoration to widgets.
+- **Tasks:**
+  1. Customize a `Text` widget with various `TextStyle` attributes.
+  2. Create a themed `MaterialApp` with a custom `ThemeData`.
+  3. Decorate a `Container` with background color, border, and shadow effects.
+
+---
+
+### **Quiz**
+
+1. **Which widget is used for creating a button with a shadow?**
+   - a) TextButton
+   - b) OutlinedButton
+   - c) ElevatedButton
+   - d) IconButton
+
+2. **What is the purpose of the `TextFormField` widget in Flutter?**
+   - a) To display images
+   - b) To create a button
+   - c) To handle text input from users
+   - d) To display icons
+
+3. **How can you ensure that a form field contains a valid email address?**
+   - a) Use the `TextStyle` class
+   - b) Use a `RegExp` pattern in the validator function
+   - c) Set a minimum character length
+   - d) Apply `BoxDecoration`
+
+4. **What does `ThemeData` allow you to do in a Flutter app?**
+   - a) Add animations
+   - b) Define global styling and theming for the app
+   - c) Manage local storage
+   - d) Implement navigation and routing
+
+5. **Which class is used to add background color and borders to a container?**
+   - a) TextStyle
+   - b) ThemeData
+   - c) BoxDecoration
+   - d) InputDecoration
 
 ---
 
 ### **Conclusion**
 
-In this session, we explored common Flutter widgets such as buttons, icons, and text fields, including how to handle user input and forms effectively. We also covered customizing widgets through styling, theming, and decoration. Mastery of these concepts is essential for creating a visually appealing and user-friendly Flutter application.
+Session 7 provides a deep dive into common Flutter widgets such as buttons, icons, and text fields. It covers how to handle user input through forms, validate input, and customize widgets using styling, theming, and decoration techniques. Mastery of these concepts is crucial for building interactive and visually appealing Flutter applications.
