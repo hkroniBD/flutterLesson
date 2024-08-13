@@ -1,6 +1,7 @@
 # Flutter Mobile App Development Course
+<img src="https://th.bing.com/th/id/OIP.RW5EabFwF_SjaBQW1zPSqgAAAA?rs=1&pid=ImgDetMain" alt="Simplygon" width="200" height="200">
 
-Author: Md. Hassanul Karim Roni  
+Author and Instructor: Md. Hassanul Karim Roni  
 Faculty Member, Dept. of EEE, Hajee Mohammad Danesh Science and Technology University (HSTU)  
 Dinajpur, Bangladesh
 
