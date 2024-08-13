@@ -19,6 +19,7 @@ ISAR (Intuitive, Swift, and ARm) is a highly efficient NoSQL database for Flutte
 
 2. Run `flutter pub get` to install the dependencies.
 
+
 #### **Step 2: Create ISAR Database Models**
 
 1. Define your data models using the ISAR annotations. Models should be marked with `@Collection` and the properties with `@Id` for the primary key:
@@ -40,6 +41,11 @@ ISAR (Intuitive, Swift, and ARm) is a highly efficient NoSQL database for Flutte
    ```bash
    flutter pub run build_runner build
    ```
+Alternative code if previously generated files are there- 
+   ```bash
+   flutter pub run build_runner build --delete-conflicting-outputs
+   ```
+The --delete-conflicting-outputs flag ensures that any previously generated files that might conflict with the new generation process are deleted. This is useful to avoid issues where outdated generated files could cause errors.
 
 ### **2. Performing CRUD Operations**
 
