@@ -82,8 +82,7 @@ This session focuses on creating and managing forms in Flutter, handling form va
   ```
 
 - **References:**
-  - [Flutter Forms Documentation](https://flutter.dev/docs/development/ui/widgets/form)
-
+  - [Flutter Forms Documentation] https://docs.flutter.dev/cookbook/forms/
 ---
 
 ### **2. Handling Form Validation and Submission**
@@ -200,7 +199,7 @@ This session focuses on creating and managing forms in Flutter, handling form va
   ```
 
 - **References:**
-  - [Flutter Custom Form Fields](https://flutter.dev/docs/development/ui/widgets/form#custom-form-fields)
+  - [Flutter Custom Form Fields] https://docs.flutter.dev/cookbook/forms/text-input
 
 ---
 
