@@ -121,21 +121,21 @@ Here is the list of app ideas with sample design links from the internet:
 **Key Features:**
 - **Session 4 & 7:** Use widgets like `Container`, `Text`, and `Button` for calculator layout.
 - **Session 6:** Manage state for performing calculations.
-**Sample Design:** [Simple Calculator App Design]()
+**Sample Design:** [Simple Calculator App Design](https://www.behance.net/gallery/187908669/Simple-Calculator-UI-Design?tracking_source=search_projects%7Csimple+calculator+app)
 
 ### **18. Notes App**
 **Key Features:**
 - **Session 4 & 7:** Use widgets like `TextField` and `ListView` to manage notes.
 - **Session 6:** Manage state for creating, editing, and deleting notes.
 - **Session 13:** Use forms for note creation and validation.
-**Sample Design:** [Notes App Design]()
+**Sample Design:** [Notes App Design](https://www.behance.net/gallery/165751611/Nsecret-App-Notes-app?tracking_source=search_projects%7Cnotes+app)
 
 ### **19. Unit Converter**
 **Key Features:**
 - **Session 4 & 7:** Use widgets like `TextField` and `Container` for unit conversion inputs and results.
 - **Session 6:** Manage state for unit conversion.
 - **Session 16:** Update conversion results in real-time.
-**Sample Design:** [Unit Converter App Design]()
+**Sample Design:** [Unit Converter App Design](https://www.behance.net/gallery/204334229/Currency-Converter-IOS-Mobile-App-UXUI-Design?tracking_source=search_projects%7Cunit+converter+app)
 
 ### **20. To-Do List with Notifications**
 **Key Features:**
@@ -150,7 +150,7 @@ Here is the list of app ideas with sample design links from the internet:
 - **Session 4 & 7:** Use widgets like `ListView` and `TextField` for chat interface.
 - **Session 6:** Manage state for real-time messaging.
 - **Session 15:** Integrate real-time messaging with server.
-**Sample Design:** [Simple Chat App Design]()
+**Sample Design:** [Simple Chat App Design](https://www.behance.net/gallery/204833385/Simple-Chat-App?tracking_source=search_projects%7Csimple+chat+app)
 
 ### **22. Digital Visiting Card QR Generator App**
 **Key Features:**
