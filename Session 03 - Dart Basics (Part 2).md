@@ -1,354 +1,274 @@
-### **Lecture Notes: Session 3 - Dart Basics (Part 2)**
+### **Session 3: Dart Basics - Part 2**
+
+#### **Objective:**
+This session delves into advanced Dart programming concepts, focusing on object-oriented programming (OOP), including classes, objects, inheritance, polymorphism, exception handling, and asynchronous programming. Understanding these concepts is crucial for creating scalable and maintainable applications in Flutter.
 
 ---
 
-#### **1. Introduction to Object-Oriented Programming (OOP) Concepts in Dart**
+### **1. Introduction to Object-Oriented Programming (OOP) Concepts in Dart**
 
-Object-Oriented Programming (OOP) is a programming paradigm centered around the concept of "objects", which are instances of classes. OOP in Dart focuses on encapsulation, inheritance, and polymorphism, providing a structured approach to software development.
+**a. Object-Oriented Programming Basics:**
 
-**a. Core Concepts of OOP:**
-- **Encapsulation:** Bundling the data (attributes) and methods (functions) that operate on the data into a single unit, or class.
-- **Abstraction:** Hiding the complex implementation details and showing only the necessary features.
-- **Inheritance:** Mechanism by which one class can inherit properties and methods from another, promoting code reuse.
-- **Polymorphism:** Ability to present the same interface for different data types or classes, allowing for flexibility in code execution.
+   - **Definition:** OOP is a programming paradigm based on the concept of "objects," which can contain data (attributes) and code (methods).
+   - **Core Principles:**
+     - **Encapsulation:** Bundling data with methods that operate on the data.
+     - **Abstraction:** Hiding complex implementation details and exposing only essential features.
+     - **Inheritance:** Creating a new class based on an existing class.
+     - **Polymorphism:** Using a single interface to represent different underlying forms (data types).
 
-**b. Why OOP?**
-- **Modularity:** Code is organized into distinct classes, making it easier to manage and debug.
-- **Reusability:** Classes can be reused across different parts of an application or even in other projects.
-- **Scalability:** OOP principles make it easier to scale applications by adding new features without disrupting existing functionality.
+   - **References:**
+     - [Dart Object-Oriented Programming](https://dart.dev/guides/language/language-tour#object-oriented-programming)
 
 ---
 
-#### **2. Classes, Objects, and Constructors**
-
-In Dart, classes are the blueprint for objects, defining the properties and behaviors that the objects created from the class will have.
+### **2. Classes, Objects, Constructors**
 
 **a. Classes and Objects:**
-- **Class:** Defines a data type by bundling data and methods that operate on the data.
-  ```dart
-  class Car {
-    String model;
-    int year;
 
-    void start() {
-      print('Car is starting');
-    }
-  }
-  ```
-- **Object:** An instance of a class. Objects are created using the `new` keyword (optional in Dart).
-  ```dart
-  Car myCar = Car();
-  myCar.model = 'Tesla Model S';
-  myCar.year = 2020;
-  myCar.start(); // Outputs: Car is starting
-  ```
+   - **Definition of Class:**
+     - A class is a blueprint for creating objects. It defines the data and behavior of the objects.
+     - **Syntax:**
+       ```dart
+       class Person {
+         String name;
+         int age;
 
-**b. Constructors:**
-- Constructors are special functions that are automatically called when an object is instantiated. They are used to initialize the object’s properties.
+         void greet() {
+           print('Hello, my name is $name and I am $age years old.');
+         }
+       }
+       ```
 
-- **Default Constructor:** Dart provides a default constructor if you don't define one.
-  ```dart
-  class Car {
-    String model;
-    int year;
+   - **Creating Objects:**
+     - Objects are instances of a class.
+     - **Syntax:**
+       ```dart
+       void main() {
+         Person person1 = Person();
+         person1.name = 'Alice';
+         person1.age = 30;
+         person1.greet();
+       }
+       ```
 
-    Car() {
-      print('A new car has been created!');
-    }
-  }
-  ```
+   - **Constructors:**
+     - Constructors are special methods used to initialize objects.
+     - **Syntax:**
+       ```dart
+       class Person {
+         String name;
+         int age;
 
-- **Parameterized Constructor:** Allows passing arguments to set properties when an object is created.
-  ```dart
-  class Car {
-    String model;
-    int year;
+         // Default constructor
+         Person(this.name, this.age);
 
-    Car(this.model, this.year);
-  }
+         void greet() {
+           print('Hello, my name is $name and I am $age years old.');
+         }
+       }
+       ```
 
-  Car myCar = Car('Tesla Model 3', 2021);
-  ```
-
-- **Named Constructors:** Dart allows you to define multiple constructors for a class by giving them different names.
-  ```dart
-  class Car {
-    String model;
-    int year;
-
-    Car(this.model, this.year);
-
-    Car.electricCar(String model) {
-      this.model = model;
-      this.year = 2021;
-    }
-  }
-
-  Car tesla = Car.electricCar('Tesla Model S');
-  ```
-
-**c. Getters and Setters:**
-- **Getters and Setters** are special methods that provide read and write access to an object’s properties. They allow for encapsulation and data validation.
-
-  ```dart
-  class Circle {
-    double _radius;
-
-    Circle(this._radius);
-
-    double get radius => _radius;
-
-    set radius(double value) {
-      if (value > 0) {
-        _radius = value;
-      }
-    }
-  }
-
-  Circle circle = Circle(5.0);
-  print(circle.radius); // Accessing the radius
-  circle.radius = 7.0; // Setting the radius
-  ```
+   - **References:**
+     - [Dart Classes](https://dart.dev/guides/language/language-tour#classes)
+     - [Dart Constructors](https://dart.dev/guides/language/language-tour#constructors)
 
 ---
 
-#### **3. Inheritance and Polymorphism**
-
-Inheritance and polymorphism are two fundamental principles of OOP that allow for extending existing code and creating more dynamic, flexible applications.
+### **3. Inheritance and Polymorphism**
 
 **a. Inheritance:**
-- Inheritance allows one class (child class) to inherit properties and methods from another class (parent class), promoting code reuse.
 
-- **Syntax:**
-  ```dart
-  class Vehicle {
-    String color;
+   - **Definition:**
+     - Inheritance allows one class to inherit the properties and methods of another class.
+   - **Syntax:**
+     ```dart
+     class Animal {
+       void eat() {
+         print('This animal is eating.');
+       }
+     }
 
-    void drive() {
-      print('Driving the vehicle');
-    }
-  }
+     class Dog extends Animal {
+       void bark() {
+         print('The dog is barking.');
+       }
+     }
 
-  class Car extends Vehicle {
-    int doors;
+     void main() {
+       Dog myDog = Dog();
+       myDog.eat();
+       myDog.bark();
+     }
+     ```
 
-    void honk() {
-      print('Honking the car');
-    }
-  }
-
-  Car myCar = Car();
-  myCar.color = 'Red';
-  myCar.drive(); // Inherited method
-  myCar.honk(); // Own method
-  ```
+   - **References:**
+     - [Dart Inheritance](https://dart.dev/guides/language/language-tour#inheritance)
 
 **b. Polymorphism:**
-- Polymorphism means "many forms". In Dart, polymorphism allows one interface to be used for a general class of actions, which can be performed differently by different classes.
 
-- **Method Overriding:** A subclass can provide a specific implementation of a method that is already defined in its superclass.
-  ```dart
-  class Animal {
-    void sound() {
-      print('Animal makes a sound');
-    }
-  }
+   - **Definition:**
+     - Polymorphism allows methods to do different things based on the object it is acting upon.
+   - **Example:**
+     ```dart
+     class Shape {
+       void draw() {
+         print('Drawing a shape');
+       }
+     }
 
-  class Dog extends Animal {
-    @override
-    void sound() {
-      print('Dog barks');
-    }
-  }
+     class Circle extends Shape {
+       @override
+       void draw() {
+         print('Drawing a circle');
+       }
+     }
 
-  Animal myDog = Dog();
-  myDog.sound(); // Outputs: Dog barks
-  ```
+     class Square extends Shape {
+       @override
+       void draw() {
+         print('Drawing a square');
+       }
+     }
 
-**c. Abstract Classes and Interfaces:**
-- **Abstract Classes:** Cannot be instantiated and are meant to be subclassed. They can contain abstract methods, which do not have an implementation and must be overridden by subclasses.
-  ```dart
-  abstract class Shape {
-    void draw(); // Abstract method
-  }
+     void main() {
+       Shape myShape = Circle();
+       myShape.draw(); // Output: Drawing a circle
 
-  class Circle extends Shape {
-    @override
-    void draw() {
-      print('Drawing a circle');
-    }
-  }
+       myShape = Square();
+       myShape.draw(); // Output: Drawing a square
+     }
+     ```
 
-  Shape shape = Circle();
-  shape.draw(); // Outputs: Drawing a circle
-  ```
-
-- **Interfaces:** In Dart, every class implicitly defines an interface, which other classes can implement. Unlike abstract classes, a class can implement multiple interfaces.
-  ```dart
-  class Printer {
-    void printDocument() {
-      print('Printing document');
-    }
-  }
-
-  class Scanner {
-    void scanDocument() {
-      print('Scanning document');
-    }
-  }
-
-  class AllInOnePrinter implements Printer, Scanner {
-    @override
-    void printDocument() {
-      print('All-in-one printer printing');
-    }
-
-    @override
-    void scanDocument() {
-      print('All-in-one printer scanning');
-    }
-  }
-
-  AllInOnePrinter device = AllInOnePrinter();
-  device.printDocument();
-  device.scanDocument();
-  ```
+   - **References:**
+     - [Dart Polymorphism](https://dart.dev/guides/language/language-tour#polymorphism)
 
 ---
 
-#### **4. Exception Handling in Dart**
+### **4. Exception Handling and Asynchronous Programming with Future and async/await**
 
-Exception handling in Dart provides a way to handle runtime errors, ensuring that your program can deal with unexpected situations gracefully.
+**a. Exception Handling:**
 
-**a. What is an Exception?**
-- An exception is an error that occurs during the execution of a program. In Dart, exceptions are objects that represent an error or an unexpected event.
+   - **Definition:**
+     - Exception handling is used to handle runtime errors and prevent the application from crashing.
+   - **Syntax:**
+     ```dart
+     void main() {
+       try {
+         int result = 12 ~/ 0; // This will cause an exception
+       } catch (e) {
+         print('An error occurred: $e');
+       } finally {
+         print('This block is executed regardless of an exception.');
+       }
+     }
+     ```
 
-**b. Try-Catch-Finally:**
-- Dart uses `try`, `catch`, and `finally` blocks to handle exceptions.
-  ```dart
-  void main() {
-    try {
-      int result = 10 ~/ 0; // Throws an exception
-    } catch (e) {
-      print('Caught an exception: $e');
-    } finally {
-      print('This block always executes');
-    }
-  }
-  ```
+   - **References:**
+     - [Dart Exception Handling](https://dart.dev/guides/language/language-tour#exception-handling)
 
-- **Catching Specific Exceptions:**
-  - Dart allows catching specific exceptions to handle different types of errors accordingly.
-  ```dart
-  void main() {
-    try {
-      int result = 10 ~/ 0;
-    } on IntegerDivisionByZeroException {
-      print('Cannot divide by zero');
-    } catch (e) {
-      print('Caught an exception: $e');
-    }
-  }
-  ```
+**b. Asynchronous Programming with Future and async/await:**
 
-- **Rethrowing Exceptions:**
-  - You can rethrow an exception after catching it, to allow it to be handled at a higher level.
-  ```dart
-  void main() {
-    try {
-      checkValue(-1);
-    } catch (e) {
-      print('Caught an exception: $e');
-    }
-  }
+   - **Future:**
+     - A `Future` represents a value that will be available in the future.
+   - **Syntax:**
+     ```dart
+     Future<void> fetchData() async {
+       await Future.delayed(Duration(seconds: 2));
+       print('Data fetched');
+     }
 
-  void checkValue(int value) {
-    if (value < 0) {
-      throw Exception('Value must be non-negative');
-    }
-  }
-  ```
+     void main() {
+       fetchData();
+       print('Waiting for data...');
+     }
+     ```
+
+   - **async/await:**
+     - `async` and `await` keywords are used to write asynchronous code more readable.
+   - **Syntax:**
+     ```dart
+     Future<String> fetchData() async {
+       await Future.delayed(Duration(seconds: 2));
+       return 'Data fetched';
+     }
+
+     void main() async {
+       String data = await fetchData();
+       print(data);
+     }
+     ```
+
+   - **References:**
+     - [Dart Future](https://dart.dev/guides/libraries/futures)
+     - [Dart Async/Await](https://dart.dev/guides/libraries/async)
 
 ---
 
-#### **5. Asynchronous Programming with Future and async/await**
+### **Assignments**
 
-Asynchronous programming is essential for performing tasks that take time, such as network requests, file I/O, and timers, without blocking the main thread.
+#### **Assignment 1: OOP Concepts**
+- **Objective:** Practice creating classes, objects, and using constructors.
+- **Tasks:**
+  1. Define a `Book` class with attributes like `title`, `author`, and `yearPublished`. Include a constructor and a method to display the book details.
+  2. Create an instance of the `Book` class and call its method to display the details.
 
-**a. Futures:**
-- A `Future` in Dart represents a potential value or error that will be available at some time in the future.
+#### **Assignment 2: Inheritance and Polymorphism**
+- **Objective:** Implement inheritance and polymorphism.
+- **Tasks:**
+  1. Create a base class `Vehicle` with a method `start()`. Extend this class to `Car` and `Motorcycle` with overridden methods.
+  2. Demonstrate polymorphism by creating a list of `Vehicle` objects and calling the `start()` method on each.
 
-- **Creating a Future:**
-  ```dart
-  Future<String> fetchData() {
-    return Future.delayed(Duration(seconds: 2), () => 'Data loaded');
-  }
+#### **Assignment 3: Exception Handling and Async Programming**
+- **Objective:** Implement exception handling and asynchronous programming.
+- **Tasks:**
+  1. Write a Dart function that simulates data fetching and uses a `Future` to handle asynchronous operations.
+  2. Implement exception handling in a function that divides two numbers and handles division by zero.
 
-  void main() {
-    fetchData().then((data) {
-      print(data); // Outputs: Data loaded
-    });
-  }
-  ```
+---
 
-- **Handling Errors in Futures:**
-  ```dart
-  fetchData().then((data) {
-    print(data);
-  }).catchError((error) {
-    print('Error: $error');
-  });
-  ```
+### **Quiz**
 
-**b. async and await:**
-- The `async` keyword is used to define an asynchronous function, and `await` is used to wait for a Future to complete.
+1. **What is the purpose of constructors in Dart?**
+   - a) To initialize objects
+   - b) To define methods
+   - c) To handle exceptions
+   - d) To create new classes
 
-- **Using async/await:**
-  ```dart
-  Future<String> fetchData() async {
-    await Future.delayed(Duration(seconds: 2)); 
-    return 'Data loaded';
-  }
+2. **Which keyword is used to handle exceptions in Dart?**
+   - a) `throw`
+   - b) `try`
+   - c) `catch`
+   - d) `finally`
 
-  void main() async {
-    String data = await fetchData();
-    print(data); // Outputs: Data loaded
-  }
-  ```
+3. **What does polymorphism allow you to do in Dart?**
+   - a) Create new classes
+   - b) Handle multiple exceptions
+   - c) Use a single method name for different implementations
+   - d) Manage asynchronous tasks
 
-- **Error Handling with async/await:**
-  ```dart
-  void main() async
+4. **How do you mark a function as asynchronous in Dart?**
+   - a) Using the `future` keyword
+   - b) Using the `async` keyword
+   - c) Using the `await` keyword
+   - d) Using the `await` keyword
 
- {
-    try {
-      String data = await fetchData();
-      print(data);
-    } catch (e) {
-      print('Caught an exception: $e');
-    }
-  }
-  ```
-
-- **Asynchronous Iteration:**
-  - Dart supports asynchronous iteration using `await for`. This is useful when working with streams or handling a sequence of asynchronous events.
-  ```dart
-  Stream<int> countStream(int to) async* {
-    for (int i = 1; i <= to; i++) {
-      await Future.delayed(Duration(seconds: 1));
-      yield i;
-    }
-  }
-
-  void main() async {
-    await for (int i in countStream(5)) {
-      print(i); // Outputs: 1, 2, 3, 4, 5
-    }
-  }
-  ```
+5. **What is the output of the following Dart code?**
+   ```dart
+   void main() {
+     print('Start');
+     Future.delayed(Duration(seconds: 1), () {
+       print('Delayed');
+     });
+     print('End');
+   }
+   ```
+   - a) `Start`, `Delayed`, `End`
+   - b) `Start`, `End`, `Delayed`
+   - c) `Delayed`, `Start`, `End`
+   - d) `Start`, `Delayed`
 
 ---
 
 ### **Conclusion**
 
-This session provides an in-depth look into the fundamentals of object-oriented programming in Dart, covering essential concepts such as classes, objects, constructors, inheritance, polymorphism, exception handling, and asynchronous programming. Mastery of these topics is crucial for building robust and scalable Flutter applications.
+Session 3 expands on Dart programming fundamentals by introducing OOP concepts, including classes, objects, inheritance, and polymorphism. It also covers exception handling and asynchronous programming, which are essential for managing complex applications and ensuring responsive user experiences.
