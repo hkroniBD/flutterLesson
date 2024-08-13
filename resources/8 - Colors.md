@@ -1,4 +1,4 @@
-Certainly! Here is a categorized list of popular Flutter colors using the `Colors` class, with their names and descriptions:
+Here is a categorized list of popular Flutter colors using the `Colors` class, with their names and descriptions:
 
 ### **Primary Colors**
 
