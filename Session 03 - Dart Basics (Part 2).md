@@ -1,261 +1,274 @@
-### **Session 4: Flutter Basics**
+### **Session 3: Dart Basics - Part 2**
 
 #### **Objective:**
-This session focuses on the fundamental concepts of Flutter, including widgets, the widget tree, and basic widget types. Understanding these concepts is essential for building and designing user interfaces in Flutter.
+This session delves into advanced Dart programming concepts, focusing on object-oriented programming (OOP), including classes, objects, inheritance, polymorphism, exception handling, and asynchronous programming. Understanding these concepts is crucial for creating scalable and maintainable applications in Flutter.
 
 ---
 
-### **1. Understanding Flutter Widgets**
+### **1. Introduction to Object-Oriented Programming (OOP) Concepts in Dart**
 
-**a. What is a Widget?**
+**a. Object-Oriented Programming Basics:**
 
-- **Definition:**
-  - In Flutter, everything is a widget. A widget is a basic building block of a Flutter app's UI. It represents an element on the screen, such as a button, text, or image.
-  - Widgets are immutable and are used to describe what the UI should look like. They can be combined to create complex UIs.
+   - **Definition:** OOP is a programming paradigm based on the concept of "objects," which can contain data (attributes) and code (methods).
+   - **Core Principles:**
+     - **Encapsulation:** Bundling data with methods that operate on the data.
+     - **Abstraction:** Hiding complex implementation details and exposing only essential features.
+     - **Inheritance:** Creating a new class based on an existing class.
+     - **Polymorphism:** Using a single interface to represent different underlying forms (data types).
 
-- **References:**
-  - [Flutter Widgets](https://flutter.dev/docs/development/ui/widgets-intro)
-
-**b. Widget Lifecycle:**
-
-- **Creation:** Widgets are created using the `build()` method.
-- **Configuration:** Widgets are configured by the properties they are given.
-- **Rendering:** Widgets are rendered to the screen based on their configuration.
+   - **References:**
+     - [Dart Object-Oriented Programming](https://dart.dev/guides/language/language-tour#object-oriented-programming)
 
 ---
 
-### **2. StatelessWidget vs. StatefulWidget**
+### **2. Classes, Objects, Constructors**
 
-**a. StatelessWidget:**
+**a. Classes and Objects:**
 
-- **Definition:**
-  - `StatelessWidget` is used for widgets that do not require mutable state. Once created, they cannot change their properties.
-  - **Usage:**
-    - Ideal for static elements that do not change over time.
+   - **Definition of Class:**
+     - A class is a blueprint for creating objects. It defines the data and behavior of the objects.
+     - **Syntax:**
+       ```dart
+       class Person {
+         String name;
+         int age;
 
-- **Syntax:**
-  ```dart
-  class MyStaticWidget extends StatelessWidget {
-    @override
-    Widget build(BuildContext context) {
-      return Container(
-        child: Text('This is a static widget'),
-      );
-    }
-  }
-  ```
+         void greet() {
+           print('Hello, my name is $name and I am $age years old.');
+         }
+       }
+       ```
 
-- **References:**
-  - [StatelessWidget Documentation](https://flutter.dev/docs/development/ui/widgets-intro#stateless-widgets)
+   - **Creating Objects:**
+     - Objects are instances of a class.
+     - **Syntax:**
+       ```dart
+       void main() {
+         Person person1 = Person();
+         person1.name = 'Alice';
+         person1.age = 30;
+         person1.greet();
+       }
+       ```
 
-**b. StatefulWidget:**
+   - **Constructors:**
+     - Constructors are special methods used to initialize objects.
+     - **Syntax:**
+       ```dart
+       class Person {
+         String name;
+         int age;
 
-- **Definition:**
-  - `StatefulWidget` is used for widgets that can change state during their lifecycle. It requires a separate `State` object that contains mutable state.
+         // Default constructor
+         Person(this.name, this.age);
 
-- **Syntax:**
-  ```dart
-  class MyDynamicWidget extends StatefulWidget {
-    @override
-    _MyDynamicWidgetState createState() => _MyDynamicWidgetState();
-  }
+         void greet() {
+           print('Hello, my name is $name and I am $age years old.');
+         }
+       }
+       ```
 
-  class _MyDynamicWidgetState extends State<MyDynamicWidget> {
-    int _counter = 0;
-
-    void _incrementCounter() {
-      setState(() {
-        _counter++;
-      });
-    }
-
-    @override
-    Widget build(BuildContext context) {
-      return Column(
-        children: [
-          Text('Counter: $_counter'),
-          ElevatedButton(
-            onPressed: _incrementCounter,
-            child: Text('Increment'),
-          ),
-        ],
-      );
-    }
-  }
-  ```
-
-- **References:**
-  - [StatefulWidget Documentation](https://flutter.dev/docs/development/ui/widgets-intro#stateful-widgets)
+   - **References:**
+     - [Dart Classes](https://dart.dev/guides/language/language-tour#classes)
+     - [Dart Constructors](https://dart.dev/guides/language/language-tour#constructors)
 
 ---
 
-### **3. The Widget Tree and the Build Method**
+### **3. Inheritance and Polymorphism**
 
-**a. Widget Tree:**
+**a. Inheritance:**
 
-- **Definition:**
-  - The widget tree represents the hierarchy of widgets in a Flutter application. Each widget can have child widgets, forming a tree structure.
-  - **Example:**
-    ```dart
-    MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(title: Text('My App')),
-        body: Center(child: Text('Hello, World!')),
-      ),
-    );
-    ```
+   - **Definition:**
+     - Inheritance allows one class to inherit the properties and methods of another class.
+   - **Syntax:**
+     ```dart
+     class Animal {
+       void eat() {
+         print('This animal is eating.');
+       }
+     }
 
-- **References:**
-  - [Flutter Widget Tree](https://flutter.dev/docs/development/ui/widgets-intro#widget-tree)
+     class Dog extends Animal {
+       void bark() {
+         print('The dog is barking.');
+       }
+     }
 
-**b. Build Method:**
+     void main() {
+       Dog myDog = Dog();
+       myDog.eat();
+       myDog.bark();
+     }
+     ```
 
-- **Definition:**
-  - The `build()` method is responsible for describing the part of the user interface represented by a widget. It is called whenever the widget's state changes.
+   - **References:**
+     - [Dart Inheritance](https://dart.dev/guides/language/language-tour#inheritance)
 
-- **Usage:**
-  - The `build()` method returns a widget tree that represents the UI of the widget.
+**b. Polymorphism:**
 
-- **References:**
-  - [Flutter Build Method](https://flutter.dev/docs/development/ui/widgets-intro#the-build-method)
+   - **Definition:**
+     - Polymorphism allows methods to do different things based on the object it is acting upon.
+   - **Example:**
+     ```dart
+     class Shape {
+       void draw() {
+         print('Drawing a shape');
+       }
+     }
+
+     class Circle extends Shape {
+       @override
+       void draw() {
+         print('Drawing a circle');
+       }
+     }
+
+     class Square extends Shape {
+       @override
+       void draw() {
+         print('Drawing a square');
+       }
+     }
+
+     void main() {
+       Shape myShape = Circle();
+       myShape.draw(); // Output: Drawing a circle
+
+       myShape = Square();
+       myShape.draw(); // Output: Drawing a square
+     }
+     ```
+
+   - **References:**
+     - [Dart Polymorphism](https://dart.dev/guides/language/language-tour#polymorphism)
 
 ---
 
-### **4. Introduction to Basic Widgets**
+### **4. Exception Handling and Asynchronous Programming with Future and async/await**
 
-**a. Container:**
+**a. Exception Handling:**
 
-- **Definition:**
-  - `Container` is a versatile widget used for layout and decoration. It can contain other widgets and apply padding, margins, borders, and more.
+   - **Definition:**
+     - Exception handling is used to handle runtime errors and prevent the application from crashing.
+   - **Syntax:**
+     ```dart
+     void main() {
+       try {
+         int result = 12 ~/ 0; // This will cause an exception
+       } catch (e) {
+         print('An error occurred: $e');
+       } finally {
+         print('This block is executed regardless of an exception.');
+       }
+     }
+     ```
 
-- **Syntax:**
-  ```dart
-  Container(
-    padding: EdgeInsets.all(16.0),
-    margin: EdgeInsets.all(16.0),
-    decoration: BoxDecoration(
-      color: Colors.blue,
-      borderRadius: BorderRadius.circular(8.0),
-    ),
-    child: Text('This is a container'),
-  )
-  ```
+   - **References:**
+     - [Dart Exception Handling](https://dart.dev/guides/language/language-tour#exception-handling)
 
-- **References:**
-  - [Container Widget Documentation](https://flutter.dev/docs/development/ui/widgets/layout#container)
+**b. Asynchronous Programming with Future and async/await:**
 
-**b. Text:**
+   - **Future:**
+     - A `Future` represents a value that will be available in the future.
+   - **Syntax:**
+     ```dart
+     Future<void> fetchData() async {
+       await Future.delayed(Duration(seconds: 2));
+       print('Data fetched');
+     }
 
-- **Definition:**
-  - `Text` is used to display a string of text. It is highly customizable, with options for styling and alignment.
+     void main() {
+       fetchData();
+       print('Waiting for data...');
+     }
+     ```
 
-- **Syntax:**
-  ```dart
-  Text(
-    'Hello, Flutter!',
-    style: TextStyle(fontSize: 24, color: Colors.black),
-  )
-  ```
+   - **async/await:**
+     - `async` and `await` keywords are used to write asynchronous code more readable.
+   - **Syntax:**
+     ```dart
+     Future<String> fetchData() async {
+       await Future.delayed(Duration(seconds: 2));
+       return 'Data fetched';
+     }
 
-- **References:**
-  - [Text Widget Documentation](https://flutter.dev/docs/development/ui/widgets/text)
+     void main() async {
+       String data = await fetchData();
+       print(data);
+     }
+     ```
 
-**c. Row and Column:**
-
-- **Definition:**
-  - `Row` and `Column` are layout widgets used to arrange their children horizontally (`Row`) or vertically (`Column`).
-
-- **Syntax:**
-  ```dart
-  Row(
-    children: [
-      Text('First'),
-      Text('Second'),
-    ],
-  )
-
-  Column(
-    children: [
-      Text('Top'),
-      Text('Bottom'),
-    ],
-  )
-  ```
-
-- **References:**
-  - [Row Widget Documentation](https://flutter.dev/docs/development/ui/widgets/layout#row)
-  - [Column Widget Documentation](https://flutter.dev/docs/development/ui/widgets/layout#column)
-
-**d. Image:**
-
-- **Definition:**
-  - `Image` is used to display images in the app, either from assets or network sources.
-
-- **Syntax:**
-  ```dart
-  Image.asset('assets/image.png') // For local assets
-
-  Image.network('https://example.com/image.png') // For network images
-  ```
-
-- **References:**
-  - [Image Widget Documentation](https://flutter.dev/docs/development/ui/widgets/image)
+   - **References:**
+     - [Dart Future](https://dart.dev/guides/libraries/futures)
+     - [Dart Async/Await](https://dart.dev/guides/libraries/async)
 
 ---
 
 ### **Assignments**
 
-#### **Assignment 1: Basic Widgets**
-
-- **Objective:** Practice using basic Flutter widgets to build a simple UI.
+#### **Assignment 1: OOP Concepts**
+- **Objective:** Practice creating classes, objects, and using constructors.
 - **Tasks:**
-  1. Create a Flutter app with a `Container` that includes `Text` widgets, using padding and decoration.
-  2. Use `Row` and `Column` to layout multiple `Text` widgets in a structured format.
-  3. Add an `Image` widget to the app that displays an image from local assets or a network URL.
+  1. Define a `Book` class with attributes like `title`, `author`, and `yearPublished`. Include a constructor and a method to display the book details.
+  2. Create an instance of the `Book` class and call its method to display the details.
 
-#### **Assignment 2: Stateless and Stateful Widgets**
-
-- **Objective:** Implement both `StatelessWidget` and `StatefulWidget` to understand their differences.
+#### **Assignment 2: Inheritance and Polymorphism**
+- **Objective:** Implement inheritance and polymorphism.
 - **Tasks:**
-  1. Create a `StatelessWidget` that displays a static `Text` widget.
-  2. Create a `StatefulWidget` with a button that updates a counter when pressed.
+  1. Create a base class `Vehicle` with a method `start()`. Extend this class to `Car` and `Motorcycle` with overridden methods.
+  2. Demonstrate polymorphism by creating a list of `Vehicle` objects and calling the `start()` method on each.
+
+#### **Assignment 3: Exception Handling and Async Programming**
+- **Objective:** Implement exception handling and asynchronous programming.
+- **Tasks:**
+  1. Write a Dart function that simulates data fetching and uses a `Future` to handle asynchronous operations.
+  2. Implement exception handling in a function that divides two numbers and handles division by zero.
 
 ---
 
 ### **Quiz**
 
-1. **What is the primary difference between `StatelessWidget` and `StatefulWidget`?**
-   - a) `StatelessWidget` can change state; `StatefulWidget` cannot
-   - b) `StatefulWidget` can change state; `StatelessWidget` cannot
-   - c) `StatelessWidget` is used for layout; `StatefulWidget` is used for decoration
-   - d) `StatelessWidget` and `StatefulWidget` are identical
+1. **What is the purpose of constructors in Dart?**
+   - a) To initialize objects
+   - b) To define methods
+   - c) To handle exceptions
+   - d) To create new classes
 
-2. **Which method is called to describe the part of the user interface represented by a widget?**
-   - a) `create()`
-   - b) `build()`
-   - c) `render()`
-   - d) `update()`
+2. **Which keyword is used to handle exceptions in Dart?**
+   - a) `throw`
+   - b) `try`
+   - c) `catch`
+   - d) `finally`
 
-3. **What is the purpose of the `Container` widget in Flutter?**
-   - a) To display text
-   - b) To manage layout constraints
-   - c) To provide decoration and padding
-   - d) To handle navigation
+3. **What does polymorphism allow you to do in Dart?**
+   - a) Create new classes
+   - b) Handle multiple exceptions
+   - c) Use a single method name for different implementations
+   - d) Manage asynchronous tasks
 
-4. **How do you display a network image in Flutter?**
-   - a) `Image.asset()`
-   - b) `Image.network()`
-   - c) `Image.file()`
-   - d) `Image.memory()`
+4. **How do you mark a function as asynchronous in Dart?**
+   - a) Using the `future` keyword
+   - b) Using the `async` keyword
+   - c) Using the `await` keyword
+   - d) Using the `await` keyword
 
-5. **Which widget is used to arrange children horizontally?**
-   - a) `Column`
-   - b) `Row`
-   - c) `Stack`
-   - d) `ListView`
+5. **What is the output of the following Dart code?**
+   ```dart
+   void main() {
+     print('Start');
+     Future.delayed(Duration(seconds: 1), () {
+       print('Delayed');
+     });
+     print('End');
+   }
+   ```
+   - a) `Start`, `Delayed`, `End`
+   - b) `Start`, `End`, `Delayed`
+   - c) `Delayed`, `Start`, `End`
+   - d) `Start`, `Delayed`
 
 ---
 
 ### **Conclusion**
 
-Session 4 provides a foundational understanding of Flutter widgets, including the differences between `StatelessWidget` and `StatefulWidget`, the widget tree, and key basic widgets. Mastery of these concepts is crucial for developing and designing user interfaces in Flutter applications.
+Session 3 expands on Dart programming fundamentals by introducing OOP concepts, including classes, objects, inheritance, and polymorphism. It also covers exception handling and asynchronous programming, which are essential for managing complex applications and ensuring responsive user experiences.
