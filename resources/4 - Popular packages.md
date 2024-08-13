@@ -1,4 +1,4 @@
-Certainly! Here's a table of some of the top Flutter packages categorized by their functionality:
+Here's a table of some of the top Flutter packages categorized by their functionality:
 
 ### UI & Design
 
