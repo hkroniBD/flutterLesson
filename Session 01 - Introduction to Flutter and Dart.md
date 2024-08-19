@@ -1,13 +1,18 @@
-### **Session 1: Introduction to Flutter and Dart**
+# **Session 1: Introduction to Flutter and Dart**
 
-#### **Objective:**
-This session will introduce students to Flutter and Dart, covering the advantages of using Flutter, providing an overview of Dart, and guiding students through setting up their development environment. By the end of the session, students will have created their first Flutter app, a simple "Hello World" application.
+### **Objective**
+<details>
+  <summary>Click to expand</summary>
+  This session will introduce students to Flutter and Dart, covering the advantages of using Flutter, providing an overview of Dart, and guiding students through setting up their development environment. By the end of the session, students will have created their first Flutter app, a simple "Hello World" application.
+</details>
 
 ---
 
 ### **1. Overview of Flutter**
+<details>
+  <summary>Click to expand</summary>
 
-**a. What is Flutter?**
+  **a. What is Flutter?**
 
    - **Definition:**
      - Flutter is an open-source UI framework developed by Google for building natively compiled applications for mobile, web, and desktop from a single codebase.
@@ -22,7 +27,7 @@ This session will introduce students to Flutter and Dart, covering the advantage
      - [Flutter Official Website](https://flutter.dev)
      - [Flutter Overview](https://flutter.dev/docs/get-started/flutter-for/)
 
-**b. Advantages of Using Flutter:**
+  **b. Advantages of Using Flutter:**
 
    - **Fast Development:**
      - Rapid development with hot reload and a rich set of pre-designed widgets.
@@ -38,12 +43,15 @@ This session will introduce students to Flutter and Dart, covering the advantage
 
    - **Strong Community and Ecosystem:**
      - Large and active community with extensive libraries and packages.
+</details>
 
 ---
 
 ### **2. Introduction to Dart Programming Language**
+<details>
+  <summary>Click to expand</summary>
 
-**a. What is Dart?**
+  **a. What is Dart?**
 
    - **Definition:**
      - Dart is a programming language developed by Google, designed for building web, server, and mobile applications. It is the language used to develop Flutter applications.
@@ -57,7 +65,7 @@ This session will introduce students to Flutter and Dart, covering the advantage
      - [Dart Official Website](https://dart.dev)
      - [Dart Language Tour](https://dart.dev/guides/language/language-tour)
 
-**b. Basic Syntax and Structure:**
+  **b. Basic Syntax and Structure:**
 
    - **Variables and Data Types:**
      - Example: `int number = 10;`, `String greeting = 'Hello';`
@@ -82,12 +90,15 @@ This session will introduce students to Flutter and Dart, covering the advantage
          }
        }
        ```
+</details>
 
 ---
 
 ### **3. Setting Up the Development Environment**
+<details>
+  <summary>Click to expand</summary>
 
-**a. Installing Flutter SDK:**
+  **a. Installing Flutter SDK:**
 
    - **Download Flutter SDK:**
      - Visit the [Flutter Installation Page](https://flutter.dev/docs/get-started/install) and download the appropriate version for your operating system.
@@ -98,7 +109,7 @@ This session will introduce students to Flutter and Dart, covering the advantage
    - **Verify Installation:**
      - Run `flutter doctor` in your terminal to check for any missing dependencies and ensure that your setup is correct.
 
-**b. Installing an IDE:**
+  **b. Installing an IDE:**
 
    - **Recommended IDEs:**
      - **Visual Studio Code (VS Code):**
@@ -107,7 +118,7 @@ This session will introduce students to Flutter and Dart, covering the advantage
      - **Android Studio:**
        - Install the [Flutter Plugin](https://plugins.jetbrains.com/plugin/9212-flutter) and the [Dart Plugin](https://plugins.jetbrains.com/plugin/6351-dart) from the JetBrains Plugin Repository.
 
-**c. Setting Up an Emulator:**
+  **c. Setting Up an Emulator:**
 
    - **Android Emulator:**
      - Install Android Studio, set up an Android Virtual Device (AVD) through the [AVD Manager](https://developer.android.com/studio/run/managing-avds).
@@ -117,12 +128,15 @@ This session will introduce students to Flutter and Dart, covering the advantage
 
    - **Web and Desktop:**
      - For web, you can use your browser; for desktop, ensure your platform supports Flutter desktop applications.
+</details>
 
 ---
 
 ### **4. Creating Your First Flutter App: Hello World**
+<details>
+  <summary>Click to expand</summary>
 
-**a. Creating a New Flutter Project:**
+  **a. Creating a New Flutter Project:**
 
    - **Using Command Line:**
      - Open a terminal and run:
@@ -137,12 +151,12 @@ This session will introduce students to Flutter and Dart, covering the advantage
    - **Using IDE:**
      - In VS Code or Android Studio, use the “Create New Project” option and follow the prompts.
 
-**b. Understanding the Project Structure:**
+  **b. Understanding the Project Structure:**
 
    - **lib/main.dart:**
      - Entry point of the Flutter application. It contains the `main()` function and the root widget of the app.
 
-**c. Writing the "Hello World" App:**
+  **c. Writing the "Hello World" App:**
 
    - **Example Code:**
      ```dart
@@ -172,67 +186,101 @@ This session will introduce students to Flutter and Dart, covering the advantage
        ```
      - Alternatively, use the “Run” button in your IDE.
 
-**d. Exploring the Flutter Hot Reload Feature:**
+  **d. Exploring the Flutter Hot Reload Feature:**
 
    - **Making Changes:**
      - Modify the text or UI elements and save the changes.
 
    - **Hot Reload:**
      - Observe the changes instantly without restarting the app.
+</details>
 
 ---
 
 ### **Assignments**
+<details>
+  <summary>Click to expand</summary>
 
-#### **Assignment 1: Setup and Configuration**
-- **Objective:** Set up the Flutter development environment and create your first Flutter app.
-- **Tasks:**
-  1. Install Flutter SDK and set up an IDE.
-  2. Create a new Flutter project and run it on an emulator or physical device.
-  3. Submit a screenshot of the running app and a brief description of the setup process.
+  #### **Assignment 1: Setup and Configuration**
+  - **Objective:** Set up the Flutter development environment and create your first Flutter app.
+  - **Tasks:**
+    1. Install Flutter SDK and set up an IDE.
+    2. Create a new Flutter project and run it on an emulator or physical device.
+    3. Submit a screenshot of the running app and a brief description of the setup process.
 
-#### **Assignment 2: Modify the "Hello World" App**
-- **Objective:** Customize the "Hello World" app with additional features and styles.
-- **Tasks:**
-  1. Modify the app to include a button that changes the text when pressed.
-  2. Submit the updated `main.dart` file and a screenshot of the modified app.
+  #### **Assignment 2: Modify the "Hello World" App**
+  - **Objective:** Customize the "Hello World" app with additional features and styles.
+  - **Tasks:**
+    1. Modify the app to include a button that changes the text when pressed.
+    2. Submit the updated `main.dart` file and a screenshot of the modified app.
+</details>
 
 ---
 
 ### **Quiz**
+<details>
+  <summary>Click to expand</summary>
 
-1. **What is Flutter?**
-   - a) A programming language
-   - b) A UI framework for building cross-platform applications
-   - c) A database management system
-   - d) An IDE for coding
+  1. **What is Flutter?**
+     - a) A programming language
+     - b) A UI framework for building cross-platform applications
+     - c) A database management system
+     - d) An IDE for coding
 
-2. **Which command is used to create a new Flutter project?**
-   - a) `flutter new project`
-   - b) `flutter start`
-   - c) `flutter create`
-   - d) `flutter init`
+  2. **Which command is used to create a new Flutter project?**
+     - a) `flutter new project`
+     - b) `flutter start`
+     - c) `flutter create`
+     - d) `flutter init`
 
-3. **What does the `flutter doctor` command do?**
-   - a) It installs Flutter SDK
-   - b) It checks for missing dependencies and verifies your setup
-   - c) It runs the Flutter app
-   - d) It updates the Flutter SDK
+  3. **What does the `flutter doctor` command do?**
+     - a) It installs Flutter SDK
+     - b) It checks for missing dependencies and verifies your setup
+     - c) It runs the Flutter app
+     - d) It updates the Flutter SDK
 
-4. **Which widget is used to create a basic app layout in Flutter?**
-   - a) Container
-   - b) Text
-   - c) Scaffold
-   - d) Column
+  4. **Which widget is used to create a basic app layout in Flutter?**
+     - a) Container
+     - b) Text
+     - c) Scaffold
+     - d) Column
 
-5. **What is the purpose of the `hot reload` feature in Flutter?**
-   - a) To automatically update the Flutter SDK
-   - b) To instantly see changes made to the code without restarting the app
-   - c) To deploy the app to the app store
-   - d) To generate new Flutter widgets
+  5. **What is the purpose of the `hot reload` feature in Flutter?**
+     - a) To automatically update the Flutter SDK
+     - b) To instantly see changes made to the code without restarting the app
+     - c) To deploy the app to the app store
+     - d) To generate new Flutter widgets
+</details>
+
+### **Quiz Solutions**
+<details>
+  <summary>See solution</summary>
+
+  1. **What is Flutter?**
+     - **Correct Answer:** b) A UI framework for building cross-platform applications
+     - **Explanation:** Flutter is an open-source UI framework developed by Google for building natively compiled applications for mobile, web, and desktop from a single codebase.
+
+  2. **Which command is used to create a new Flutter project?**
+     - **Correct Answer:** c) `flutter create`
+     - **Explanation:** The `flutter create` command generates a new Flutter project with the necessary files and folder structure.
+
+  3. **What does the `flutter doctor` command do?**
+     - **Correct Answer:** b) It checks for missing dependencies and verifies your setup
+     - **Explanation:** The `flutter doctor` command checks your environment for any missing dependencies or configuration issues and provides suggestions to resolve them.
+
+  4. **Which widget is used to create a basic app layout in Flutter?**
+     - **Correct Answer:** c) Scaffold
+     - **Explanation:** The `Scaffold` widget provides a framework for the basic visual structure of an app, including the app bar, body, and floating action button.
+
+  5. **What is the purpose of the `hot reload` feature in Flutter?**
+     - **Correct Answer:** b) To instantly see changes made to the code without restarting the app
+     - **Explanation:** Hot reload allows developers to see the effects of their code changes instantly without restarting the app, speeding up the development process.
+</details>
 
 ---
 
 ### **Conclusion**
-
-Session 1 provides a comprehensive introduction to Flutter and Dart, setting up the development environment, and creating a simple "Hello World" application. It establishes the foundation for further learning in Flutter development and prepares students to dive deeper into app development concepts in subsequent sessions.
+<details>
+  <summary>Click to expand</summary>
+  Session 1 provides a comprehensive introduction to Flutter and Dart, setting up the development environment, and creating a simple "Hello World" application. It establishes the foundation for further learning in Flutter development and prepares students to dive deeper into app development concepts in subsequent sessions.
+</details>
