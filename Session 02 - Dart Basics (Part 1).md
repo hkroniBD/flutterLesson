@@ -1,12 +1,15 @@
 ### **Session 2: Dart Basics - Part 1**
 
 #### **Objective:**
+<details><summary>Expand Section</summary>
 In this session, students will learn the fundamentals of the Dart programming language, including its syntax and structure, variables, data types, operators, control flow, and basic functions and methods. This foundational knowledge is essential for developing applications in Flutter.
+</details>
 
 ---
 
 ### **1. Dart Syntax and Structure**
-
+<details><summary>Expand Section</summary>
+   
 **a. Introduction to Dart:**
 
    - **Dart Language Overview:**
@@ -35,11 +38,14 @@ In this session, students will learn the fundamentals of the Dart programming la
      print('Hello, Dart!');
    }
    ```
+Try at 🌐 https://dartpad.dev/
+</details>
 
 ---
 
 ### **2. Variables, Data Types, and Operators**
-
+<details><summary>Expand Section</summary>
+   
 **a. Variables:**
 
    - **Declaration and Initialization:**
@@ -93,11 +99,13 @@ In this session, students will learn the fundamentals of the Dart programming la
 
    - **References:**
      - [Dart Operators](https://dart.dev/guides/language/language-tour#operators)
+</details>
 
 ---
 
 ### **3. Control Flow: if-else, Loops (for, while)**
-
+<details><summary>Expand Section</summary>
+   
 **a. if-else Statements:**
 
    - **Syntax:**
@@ -251,45 +259,105 @@ In this session, students will learn the fundamentals of the Dart programming la
 - **Tasks:**
   1. Create a function that takes two integers and returns their sum.
   2. Define a class with methods for basic arithmetic operations and demonstrate their usage.
+</details>
 
 ---
 
-### **Quiz**
+## **Quiz: Dart Basics - Part 1**
+<details><summary>Expand Section</summary>
 
-1. **Which symbol is used to start a single-line comment in Dart?**
-   - a) `/*`
-   - b) `//`
-   - c) `#`
-   - d) `--`
+### **1. Which symbol is used to start a single-line comment in Dart?**
 
-2. **What will be the output of the following Dart code?**
-   ```dart
-   int x = 10;
-   x *= 2;
-   print(x);
-   ```
-   - a) `10`
-   - b) `20`
-   - c) `40`
-   - d) `60`
+- a) `/*`
+- b) `//`
+- c) `#`
+- d) `--`
 
-3. **How do you declare a variable with a constant value in Dart?**
-   - a) `var`
-   - b) `const`
-   - c) `final`
-   - d) `static`
+<details>
+<summary> See solution </summary>
+   
+**Correct Answer:** b) `//`
 
-4. **What does the `for` loop syntax look like in Dart?**
-   - a) `for (init; condition; increment) { }`
-   - b) `loop (init; condition; increment) { }`
-   - c) `for (init; condition; step) { }`
-   - d) `foreach (init; condition; increment) { }`
+**Explanation:** 
+In Dart, a single-line comment starts with `//`. This is similar to many other C-style languages like Java, JavaScript, and C#. Multi-line comments start with `/*` and end with `*/`, but `//` is used specifically for single-line comments.
+</details>
 
-5. **How do you define a method inside a Dart class?**
-   - a) `methodName(parameters) { }`
-   - b) `def methodName(parameters) { }`
-   - c) `function methodName(parameters) { }`
-   - d) `method methodName(parameters) { }`
+---
+
+### **2. What will be the output of the following Dart code?**
+
+```dart
+int x = 10;
+x *= 2;
+print(x);
+```
+
+- a) `10`
+- b) `20`
+- c) `40`
+- d) `60`
+
+<details>
+<summary>See solution</summary>
+   
+**Correct Answer:** b) `20`
+
+**Explanation:** 
+The `*=` operator in Dart multiplies the variable `x` by the value on the right (2) and assigns the result back to `x`. Initially, `x` is 10, so `x *= 2` is equivalent to `x = x * 2`, which results in `x` being 20. The `print(x)` statement then outputs `20`.
+</details>
+
+---
+
+### **3. How do you declare a variable with a constant value in Dart?**
+
+- a) `var`
+- b) `const`
+- c) `final`
+- d) `static`
+
+<details>
+<summary>See solution</summary>
+   
+**Correct Answer:** b) `const`
+
+**Explanation:** 
+In Dart, `const` is used to declare a compile-time constant, meaning its value is fixed at compile time and cannot be changed later. The `final` keyword can also be used for declaring constants, but its value is determined at runtime, making `const` the correct choice for compile-time constants.
+</details>
+
+---
+
+### **4. What does the `for` loop syntax look like in Dart?**
+
+- a) `for (init; condition; increment) { }`
+- b) `loop (init; condition; increment) { }`
+- c) `for (init; condition; step) { }`
+- d) `foreach (init; condition; increment) { }`
+
+<details>
+<summary>See solution</summary>
+   
+**Correct Answer:** a) `for (init; condition; increment) { }`
+
+**Explanation:** 
+The correct syntax for a `for` loop in Dart is `for (initialization; condition; increment) { }`. This format is standard in many programming languages and allows for a loop to execute repeatedly as long as the condition evaluates to true.
+</details>
+
+---
+
+### **5. How do you define a method inside a Dart class?**
+
+- a) `methodName(parameters) { }`
+- b) `def methodName(parameters) { }`
+- c) `function methodName(parameters) { }`
+- d) `method methodName(parameters) { }`
+
+<details>
+<summary>**See solution**</summary>
+**Correct Answer:** a) `methodName(parameters) { }`
+
+**Explanation:** 
+In Dart, methods are defined inside a class with the syntax `methodName(parameters) { }`. There is no special keyword like `def` or `function`; the method name is followed directly by parentheses (which may include parameters) and the body of the method enclosed in curly braces `{}`.
+</details>
 
 ---
 
