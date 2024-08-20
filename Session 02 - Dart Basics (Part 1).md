@@ -237,10 +237,12 @@ Try at 🌐 https://dartpad.dev/
    - **References:**
      - [Dart Functions](https://dart.dev/guides/language/language-tour#functions)
      - [Dart Methods](https://dart.dev/guides/language/language-tour#methods)
+</details>
 
 ---
 
 ### **Assignments**
+<details><summary>Expand Section</summary>
 
 #### **Assignment 1: Basic Dart Syntax**
 - **Objective:** Practice Dart syntax, variables, data types, and operators.
@@ -263,7 +265,7 @@ Try at 🌐 https://dartpad.dev/
 
 ---
 
-## **Quiz: Dart Basics - Part 1**
+### **Quiz: Dart Basics - Part 1**
 <details><summary>Expand Section</summary>
 
 ### **1. Which symbol is used to start a single-line comment in Dart?**
